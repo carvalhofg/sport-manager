@@ -51,7 +51,6 @@ sonarcloud-check:
 
 
 package_job:
-  image: docker-stable
   stage: package
   tags:
     - docker
