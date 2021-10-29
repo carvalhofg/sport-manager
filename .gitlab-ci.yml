@@ -37,7 +37,7 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - mvn verify sonar:sonar -Dsonar.projectKey=carvalhofg_sport-manager
+    - mvn sonar:sonar -Dsonar.projectKey=carvalhofg_sport-manager
   only:
     - master
 
