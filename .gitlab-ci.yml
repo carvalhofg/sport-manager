@@ -39,9 +39,8 @@ sonarcloud-check:
   script:
     - mvn verify sonar:sonar -Dsonar.projectKey=carvalhofg_sport-manager
   only:
-    - merge_requests
     - master
-    - develop
+
 
 package_job:
   stage: package
