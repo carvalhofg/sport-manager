@@ -1,6 +1,5 @@
 FROM openjdk:11-jre
-RUN mkdir app
+VOLUME /tmp
 ARG JAR_FILE
-ADD /target/${JAR_FILE} /app/sport-manager.jar
-WORKDIR /app
+COPY ./${JAR_FILE} app.jar
 ENTRYPOINT java -jar sport-manager.jar
