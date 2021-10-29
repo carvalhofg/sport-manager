@@ -16,7 +16,7 @@
 	<description>Sport Event Manager</description>
 	<properties>
 		<java.version>11</java.version>
-		<sonar.projectKey>carvalhofg_sport-manager_AXzJfczu9LII3hXvNEkA</sonar.projectKey>
+		<sonar.organization>carvalhofg</sonar.organization>
 		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 	</properties>
 	<dependencies>
