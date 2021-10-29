@@ -51,6 +51,14 @@ package_job:
     - echo "Maven packaging started"
     - "mvn package"
 
+deploy_job:
+  stage: deploy
+  tags:
+    - docker
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD"
+  script:
+    mvn dockerfile:push
 
 
 
