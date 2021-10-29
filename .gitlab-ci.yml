@@ -37,7 +37,7 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - mvn verify sonar:sonar -Dsonar.projectKey=carvalhofg_sport-manager
+    - mvn sonar:sonar -Dsonar.projectKey=carvalhofg_sport-manager
   only:
     - master
 
@@ -58,7 +58,10 @@ deploy_job:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD"
   script:
-    mvn dockerfile:push
+    mvn dockerfile:push carvalhofg/sport_manager:tagname
+  only:
+    - master
+
 
 
 
