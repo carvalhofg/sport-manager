@@ -51,6 +51,7 @@ sonarcloud-check:
 
 
 package_job:
+  image: docker-stable
   stage: package
   tags:
     - docker
@@ -63,6 +64,7 @@ package_job:
       - target/*.jar
 
 deploy_job:
+  image: docker-stable
   stage: deploy
   tags:
     - docker
