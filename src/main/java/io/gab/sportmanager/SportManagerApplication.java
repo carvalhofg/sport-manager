@@ -8,8 +8,6 @@ public class SportManagerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SportManagerApplication.class, args);
-		
-		System.out.println("Hello, World!");
 	}
 
 }
