@@ -7,6 +7,7 @@ image: maven:3.6.3-jdk-11
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
+  - code_analysis
   - package
   - deploy
 
@@ -29,7 +30,7 @@ test_job:
     - "mvn test"
 
 sonarcloud-check:
-  stage: test
+  stage: code_analysis
   tags:
     - docker
   cache:
