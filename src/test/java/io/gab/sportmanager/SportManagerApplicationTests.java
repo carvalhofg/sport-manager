@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SportManagerApplicationTests {
 
 	@Test
-	public void main() {
+	void main() {
 		SportManagerApplication.main(new String[] {});
 	}
 
