@@ -10,7 +10,7 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
   
-image: maven:3.6.3-jdk-11
+image: docker:stable
 
 stages:          # List of stages for jobs, and their order of execution
   - build
