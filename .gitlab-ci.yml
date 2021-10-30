@@ -68,7 +68,7 @@ deploy_job:
   tags:
     - docker
   before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" docker.io
+    - docker login -u "carvalhofg" -p "atwcdxkk8" docker.io
   script:
     mvn compile
   only:
