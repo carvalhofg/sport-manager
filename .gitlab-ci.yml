@@ -10,7 +10,7 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
   
-image: maven:3.6.3-jdk-11
+image: docker:latest
 
 stages:          # List of stages for jobs, and their order of execution
   - build
@@ -19,6 +19,7 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 build_job:
+  image: maven:3.6.3-jdk-11
   stage: build
   tags:
     - docker
@@ -28,6 +29,7 @@ build_job:
     - "mvn compile"
 
 test_job:
+  image: maven:3.6.3-jdk-11
   stage: test
   tags:
     - docker
@@ -37,6 +39,7 @@ test_job:
     - "mvn test"
 
 sonarcloud-check:
+  image: maven:3.6.3-jdk-11
   stage: test
   tags:
     - docker
@@ -51,6 +54,7 @@ sonarcloud-check:
 
 
 package_job:
+  image: maven:3.6.3-jdk-11
   stage: package
   tags:
     - docker
