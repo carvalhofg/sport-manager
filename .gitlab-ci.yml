@@ -70,7 +70,7 @@ deploy_job:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD"
   script:
-    mvn dockerfile:push carvalhofg/sport_manager
+    mvn compile
   only:
     - master
 
