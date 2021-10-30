@@ -67,9 +67,9 @@ deploy_job:
   tags:
     - docker
   before_script:
-    - docker login -u "carvalhofg" -p "atwcdxkk8" docker.io
+    - echo "$PASSWORD" | docker login -u "$USER" "$CI_REGISTRY" --password-stdin
   script:
-    mvn compile
+    - mvn compile
   only:
     - master
 
