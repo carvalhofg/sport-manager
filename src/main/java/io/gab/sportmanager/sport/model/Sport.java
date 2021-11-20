@@ -1,15 +1,11 @@
 package io.gab.sportmanager.sport.model;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -37,12 +33,14 @@ public class Sport {
 		this.isSport = isSport;
 	}
 
-	@JsonSetter("sportIcon")
-	public void setSportIcon(String sportIcon) {
-		this.sportIcon = Base64.getDecoder().decode(sportIcon.getBytes(StandardCharsets.UTF_8));
-	}
-
-	public byte[] getSportIcon() {
-		return sportIcon;
+	public Sport convert(SportDTO dto) {
+		Sport sport = new Sport();
+		sport.setId(dto.getId());
+		sport.setTitle(dto.getTitle());
+		sport.setDescription(dto.getDescription());
+		sport.setGroupType(dto.getGroupType());
+		sport.setIsSport(dto.getIsSport());
+		sport.setSportIcon(dto.getSportIcon());
+		return sport;
 	}
 }

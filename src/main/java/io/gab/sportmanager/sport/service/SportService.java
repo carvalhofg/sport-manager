@@ -3,6 +3,7 @@ package io.gab.sportmanager.sport.service;
 import java.util.List;
 import java.util.Optional;
 
+import io.gab.sportmanager.sport.model.SportDTO;
 import io.gab.sportmanager.sport.model.SportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,13 @@ public class SportService {
 		return sportRepository.findAll();
 	}
 
-	public Optional<Sport> getOneSport(Long id) {
+	public Optional<Sport> findById(Long id) {
 		return sportRepository.findById(id);
 	}
 
-	public Sport save(Sport sport) {
+	public Sport save(SportDTO sportDTO) {
+		Sport sport = new Sport();
+		sport.convert(sportDTO);
 		return sportRepository.save(sport);
 	}
 
