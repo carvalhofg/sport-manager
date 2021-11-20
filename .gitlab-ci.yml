@@ -67,6 +67,8 @@ package_job:
   artifacts:
     paths:
       - target/*.jar
+  only:
+    - master
 
 deploy_job:
   image: docker:stable
