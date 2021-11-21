@@ -50,7 +50,7 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - mvn sonar:sonar -Dsonar.projectKey=carvalhofg_sport-manager
+    - mvn clean package sonar:sonar -Dsonar.projectKey=carvalhofg_sport-manager
   only:
     - master
 
@@ -67,6 +67,8 @@ package_job:
   artifacts:
     paths:
       - target/*.jar
+  only:
+    - master
 
 deploy_job:
   image: docker:stable
