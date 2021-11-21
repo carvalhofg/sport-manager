@@ -1,25 +1,31 @@
 package io.gab.sportmanager.service;
 
 import io.gab.sportmanager.sport.model.Sport;
+import io.gab.sportmanager.sport.model.SportDTO;
 import io.gab.sportmanager.sport.model.SportRepository;
 import io.gab.sportmanager.sport.service.SportService;
-
+import io.gab.sportmanager.util.TestUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.IOException;
+import java.util.Optional;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SportServiceTest {
+class SportServiceTest {
 
     @Autowired
     public SportRepository sportRepository;
+
+    @Autowired
+    TestUtils testUtils;
 
     @AfterEach
     void tearDown() {
@@ -27,7 +33,7 @@ public class SportServiceTest {
     }
 
     @Test
-    public void getAllSports() {
+    void getAllSports() {
         Sport sportSample = new Sport("Futebol", "Esporte mais famoso","Grupo", false);
         sportRepository.save(sportSample);
         SportService sportService = new SportService(sportRepository);
@@ -40,9 +46,24 @@ public class SportServiceTest {
     }
 
     @Test
-    public void saveSport() {
+    void getOneSport() throws IOException {
+        byte[] file1 = testUtils.convertFileToByte("images/soccerIcon.png");
+        Sport sportSample = new Sport(2L, "Futebol","Esporte mais famoso do mundo", "Grupo", true, file1);
+        sportRepository.save(sportSample);
         SportService sportService = new SportService(sportRepository);
-        Sport sport = new Sport("Futebol", "Esporte mais famoso","Grupo", false);
+
+        Optional<Sport> sport = sportService.findById(2L);
+        Sport result = sport.get();
+
+        Assertions.assertEquals(sportSample.getDescription(), result.getDescription());
+        Assertions.assertEquals(sportSample.getGroupType(), result.getGroupType());
+        Assertions.assertEquals(sportSample.getIsSport(), result.getIsSport());
+    }
+
+    @Test
+    void saveSport() {
+        SportService sportService = new SportService(sportRepository);
+        SportDTO sport = new SportDTO("Futebol", "Esporte mais famoso","Grupo", false);
 
         sportService.save(sport);
 
