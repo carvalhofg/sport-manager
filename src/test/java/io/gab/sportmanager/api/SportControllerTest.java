@@ -1,20 +1,11 @@
 package io.gab.sportmanager.api;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gab.sportmanager.sport.controller.SportController;
+import io.gab.sportmanager.sport.model.Sport;
+import io.gab.sportmanager.sport.model.SportDTO;
+import io.gab.sportmanager.sport.service.SportService;
 import io.gab.sportmanager.util.TestUtils;
-import io.gab.sportmanager.utils.SportManagerUtils;
-
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -30,14 +21,21 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import io.gab.sportmanager.sport.model.Sport;
-import io.gab.sportmanager.sport.service.SportService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest
-@ContextConfiguration(classes = {SportManagerUtils.class, SportService.class, SportController.class, TestUtils.class})
+@ContextConfiguration(classes = {SportService.class, SportController.class, TestUtils.class})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SportControllerTest {
+class SportControllerTest {
 
 	@Autowired
 	MockMvc mockMvc;
@@ -72,7 +70,7 @@ public class SportControllerTest {
 
 		Sport sport = new Sport(1L, "Tênis","Esporte com raquetes", "Both", true, file);
 
-		when(sportService.save(any(Sport.class))).thenReturn(sport);
+		when(sportService.save(any(SportDTO.class))).thenReturn(sport);
 
 		ObjectMapper mapper = new ObjectMapper();
 		String sportJson = mapper.writeValueAsString(sport);
@@ -94,7 +92,7 @@ public class SportControllerTest {
 		byte[] file1 = testUtils.convertFileToByte("images/soccerIcon.png");
 		Sport sport = new Sport(1L, "Futebol","Esporte mais famoso do mundo", "Grupo", true, file1);
 
-		when(sportService.getOneSport(sport.getId())).thenReturn(Optional.of(sport));
+		when(sportService.findById(sport.getId())).thenReturn(Optional.of(sport));
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/sport/1").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$.title").value("Futebol"))
