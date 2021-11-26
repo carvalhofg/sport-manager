@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 
@@ -17,7 +18,6 @@ public class Sport {
 	@Id
 	@GeneratedValue
 	private Long id;
-
 	private String title;
 	private String description;
 	private String groupType;
@@ -33,7 +33,7 @@ public class Sport {
 		this.isSport = isSport;
 	}
 
-	public Sport convert(SportDTO dto) {
+	public void convert(@NotNull SportDTO dto) {
 		Sport sport = new Sport();
 		sport.setId(dto.getId());
 		sport.setTitle(dto.getTitle());
@@ -41,6 +41,5 @@ public class Sport {
 		sport.setGroupType(dto.getGroupType());
 		sport.setIsSport(dto.getIsSport());
 		sport.setSportIcon(dto.getSportIcon());
-		return sport;
 	}
 }
