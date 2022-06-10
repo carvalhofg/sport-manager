@@ -21,7 +21,7 @@ public class Sport {
 	private String title;
 	private String description;
 	private String groupType;
-	private Boolean isSport;
+	private Boolean isSport; // Sport or E-Sport
 	@Lob
 	@Column(name = "sportIcon")
 	private byte[] sportIcon;

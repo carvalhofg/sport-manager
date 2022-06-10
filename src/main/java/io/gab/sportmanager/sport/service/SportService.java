@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import io.gab.sportmanager.sport.model.Sport;
 
 @Service
-
 public class SportService {
 
 	@Autowired

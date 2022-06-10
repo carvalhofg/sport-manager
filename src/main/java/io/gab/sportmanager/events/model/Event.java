@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -30,11 +31,13 @@ public class Event {
     private String name;
     private String description;
     private String local;
+    private LocalDateTime date;
     private String groupType;
     private Integer groupLimit;
     private Integer minimumGroupSize;
     private Integer maximumGroupSize;
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     private Integer minimumAge;
     private Integer maximumAge;
     private String prize;
