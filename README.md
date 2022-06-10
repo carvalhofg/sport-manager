@@ -1,1 +1,1 @@
-# sport-manager
+# API of a SportManager Project
