@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -53,11 +54,14 @@ class SportServiceTest {
         SportService sportService = new SportService(sportRepository);
 
         Optional<Sport> sport = sportService.findById(2L);
-        Sport result = sport.get();
+        if(sport.isPresent()) {
+            Assertions.assertEquals(sportSample.getDescription(), sport.get().getDescription());
+            Assertions.assertEquals(sportSample.getGroupType(), sport.get().getGroupType());
+            Assertions.assertEquals(sportSample.getIsSport(), sport.get().getIsSport());
+        } else {
+            throw new NoSuchElementException();
+        }
 
-        Assertions.assertEquals(sportSample.getDescription(), result.getDescription());
-        Assertions.assertEquals(sportSample.getGroupType(), result.getGroupType());
-        Assertions.assertEquals(sportSample.getIsSport(), result.getIsSport());
     }
 
     @Test
