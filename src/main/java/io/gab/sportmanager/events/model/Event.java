@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,19 +29,19 @@ public class Event {
     @Column(name = "eventIcon")
     private byte[] eventIcon;
 
+    @NotNull
     private String name;
+
     private String description;
-    private String local;
+
+    @NotNull
+    private String place;
+
+    @NotNull
     private LocalDateTime date;
-    private String groupType;
-    private Integer groupLimit;
-    private Integer minimumGroupSize;
-    private Integer maximumGroupSize;
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
-    private Integer minimumAge;
-    private Integer maximumAge;
-    private String prize;
-    private Long joinPrice;
-    private String details;
+
+    @OneToOne
+    @JoinColumn(name = "specs_id")
+    private EventSpecs specs;
+
 }
