@@ -28,4 +28,5 @@ public class SportServiceImpl implements SportService {
     public Sport save(Sport sport) {
         return sportRepository.save(sport);
     }
+
 }

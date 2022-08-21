@@ -1,4 +1,4 @@
-package io.gab.sportmanager.events.model;
+package io.gab.sportmanager.event.model;
 
 import io.gab.sportmanager.sport.model.Sport;
 import lombok.AllArgsConstructor;
@@ -26,18 +26,22 @@ public class Event {
     private Sport sport;
 
     @Lob
-    @Column(name = "eventIcon")
+    @Column(name = "event_icon")
     private byte[] eventIcon;
 
     @NotNull
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
     private String description;
 
     @NotNull
+    @Column(name = "place")
     private String place;
 
     @NotNull
+    @Column(name = "date")
     private LocalDateTime date;
 
     @OneToOne

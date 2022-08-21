@@ -1,4 +1,4 @@
-package io.gab.sportmanager.events.model;
+package io.gab.sportmanager.event.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +27,7 @@ public class EventSpecs {
     private Integer maximumGroupSize;
 
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private EventGenderEnum eventGenderEnum;
 
     private Integer minimumAge;
 
